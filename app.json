@@ -4,7 +4,7 @@
     "slug": "AT-HOP",
     "version": "1.0.0",
     "orientation": "default",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/at-logo.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
