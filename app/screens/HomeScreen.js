@@ -4,6 +4,7 @@ import {
   useDimensions,
   useDeviceOrientation,
 } from "@react-native-community/hooks";
+import TagOnScreen from "./TagOnScreen";
 
 function HomeScreen(props) {
   const { portrait } = useDeviceOrientation();
