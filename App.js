@@ -12,7 +12,7 @@ export default function App() {
   //return <HomeScreen />;
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="TagOn" component={TagOnScreen} />
       </Stack.Navigator>

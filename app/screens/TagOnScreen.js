@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     right: "5%",
   },
   GIF: {
-    top: "48%",
+    top: "46%",
     position: "absolute",
   },
   text: {
