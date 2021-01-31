@@ -6,10 +6,9 @@ import {
 } from "@react-native-community/hooks";
 import TagOnScreen from "./TagOnScreen";
 
-function HomeScreen(props) {
+function HomeScreen({ navigation }) {
   const { portrait } = useDeviceOrientation();
   const handleLoginPress = () => console.log("Login Pressed");
-  const handleRegisterPress = () => console.log("Register Pressed");
 
   if (portrait) {
     return (
@@ -18,13 +17,17 @@ function HomeScreen(props) {
         source={require("../assets/at-portrait.png")}
       >
         <View style={styles.loginButton}>
-          <Button color="white" title="Login" onPress={handleLoginPress} />
+          <Button
+            color="white"
+            title="Login"
+            onPress={() => navigation.navigate("TagOn")}
+          />
         </View>
         <View style={styles.registerButton}>
           <Button
             color="white"
             title="Register"
-            onPress={handleRegisterPress}
+            onPress={() => navigation.navigate("TagOn")}
           />
         </View>
       </ImageBackground>
