@@ -9,7 +9,7 @@ import {
   Text,
 } from "react-native";
 
-function TagOnScreen(props) {
+function TagOnScreen({ navigation }) {
   const handleTopUpPress = () => console.log("Register Pressed");
 
   return (
@@ -23,7 +23,11 @@ function TagOnScreen(props) {
         </Text>
 
         <View style={styles.ToUpButton}>
-          <Button color="white" title="TOP UP" onPress={handleTopUpPress} />
+          <Button
+            color="white"
+            title="TOP UP"
+            onPress={() => navigation.navigate("Transfer")}
+          />
         </View>
       </View>
 
