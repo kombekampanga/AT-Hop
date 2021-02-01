@@ -26,13 +26,21 @@ function TransferScreen({ navigation }) {
         <View style={styles.topLeftBox}></View>
         <View style={styles.topRightBox}>
           <Text style={styles.tableText}>$60.00</Text>
+          <Text style={styles.tableText2}>Credit Card</Text>
         </View>
         <View style={styles.bottomRightBox}>
           <Text style={styles.tableText}>$50.00</Text>
+          <Text style={styles.tableText2}>Hop Card</Text>
         </View>
         <View style={styles.bottomLeftBox}></View>
       </View>
-      <View style={styles.bottomSection}></View>
+      <View style={styles.bottomSection}>
+        <Image
+          style={styles.GIF}
+          source={require("../assets/at-transfer-button2.gif")}
+        />
+        <Text style={styles.transferText}>TRANSFER</Text>
+      </View>
     </View>
   );
 }
@@ -61,6 +69,8 @@ const styles = StyleSheet.create({
     height: "50%",
     top: "55%",
     position: "absolute",
+    justifyContent: "center",
+    alignItems: "center",
   },
   bottomLeftBox: {
     borderColor: "black",
@@ -92,6 +102,13 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: "bold",
   },
+  tableText2: {
+    right: "-27%",
+    bottom: "55%",
+    color: "darkgrey",
+    fontSize: 12,
+    fontWeight: "bold",
+  },
   topLeftBox: {
     borderColor: "black",
     borderWidth: 1,
@@ -121,6 +138,19 @@ const styles = StyleSheet.create({
     width: "90%",
     height: "35%",
     borderRadius: 30,
+    position: "absolute",
+  },
+  transferText: {
+    bottom: "7%",
+    color: "#84AB3C",
+    fontSize: 28,
+    fontWeight: "bold",
+    opacity: 0.7,
+  },
+  GIF: {
+    bottom: "18%",
+    width: 350,
+    height: 350,
     position: "absolute",
   },
 });
