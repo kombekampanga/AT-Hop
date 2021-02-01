@@ -1,48 +1,97 @@
-import React from "react";
+import React, { Component } from "react";
 import {
   Button,
   ImageBackground,
   StyleSheet,
   View,
-  SafeAreaView,
   Image,
   Text,
+  Alert,
 } from "react-native";
 
 import { Icon } from "react-native-elements";
 
-function TransferScreen({ navigation }) {
-  return (
-    <View style={styles.background}>
-      <View style={styles.backButton}>
-        <Icon
-          name="reply"
-          type="font-awesome-5"
-          color="white"
-          onPress={() => navigation.navigate("TagOn")}
-        />
-      </View>
-      <View style={styles.topSection}>
-        <View style={styles.topLeftBox}></View>
-        <View style={styles.topRightBox}>
-          <Text style={styles.tableText}>$60.00</Text>
-          <Text style={styles.tableText2}>Credit Card</Text>
+export default class TransferScreen extends Component {
+  constructor(props) {
+    super(props);
+    const amountValue = 60;
+    const balanceValue = 50;
+    //this.amount = amountValue.toFixed(2);
+    //this.balance = balanceValue.toFixed(2);
+    this.state = {
+      amount: amountValue.toFixed(2),
+      balance: balanceValue.toFixed(2),
+    };
+  }
+
+  handleAmount = (text) => {
+    if (isNaN(parseFloat(text))) {
+      this.handleInvalidAmount();
+    } else {
+      this.setState({ amount: parseFloat(text).toFixed(2) });
+    }
+  };
+
+  handleInvalidAmount = () => {
+    Alert.prompt(
+      "Top Up",
+      "Invalid amount entered. Please enter a valid top up amount (e.g. 50)",
+      (text) => {
+        this.handleAmount(text);
+      }
+    );
+  };
+
+  handlePressAmount = () => {
+    Alert.prompt("Top Up", "Please enter top up amount", (text) => {
+      this.handleAmount(text);
+    });
+  };
+
+  handlePressTransfer = () => {
+    let value = parseFloat(this.state.balance) + parseFloat(this.state.amount);
+    this.setState({
+      balance: parseFloat(value).toFixed(2),
+    });
+  };
+
+  render() {
+    return (
+      <View style={styles.background}>
+        <View style={styles.backButton}>
+          <Icon
+            name="reply"
+            type="font-awesome-5"
+            color="white"
+            onPress={() => this.props.navigation.navigate("TagOn")}
+          />
         </View>
-        <View style={styles.bottomRightBox}>
-          <Text style={styles.tableText}>$50.00</Text>
-          <Text style={styles.tableText2}>Hop Card</Text>
+        <View style={styles.topSection}>
+          <View style={styles.topLeftBox}></View>
+          <View style={styles.topRightBox}>
+            <Text style={styles.tableText} onPress={this.handlePressAmount}>
+              ${this.state.amount}
+            </Text>
+            <Text style={styles.tableText2}>Add top up amount</Text>
+          </View>
+          <View style={styles.bottomRightBox}>
+            <Text style={styles.tableText}>${this.state.balance}</Text>
+            <Text style={styles.tableText2}>Current Balance</Text>
+          </View>
+          <View style={styles.bottomLeftBox}></View>
         </View>
-        <View style={styles.bottomLeftBox}></View>
+        <View style={styles.bottomSection}>
+          <Image
+            style={styles.GIF}
+            source={require("../assets/at-transfer-button2.gif")}
+          />
+          <Text style={styles.transferText} onPress={this.handlePressTransfer}>
+            TRANSFER
+          </Text>
+        </View>
       </View>
-      <View style={styles.bottomSection}>
-        <Image
-          style={styles.GIF}
-          source={require("../assets/at-transfer-button2.gif")}
-        />
-        <Text style={styles.transferText}>TRANSFER</Text>
-      </View>
-    </View>
-  );
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -103,7 +152,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   tableText2: {
-    right: "-27%",
+    right: "-15%",
     bottom: "55%",
     color: "darkgrey",
     fontSize: 12,
@@ -155,4 +204,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TransferScreen;
+//export default TransferScreen;
