@@ -37,12 +37,11 @@ function TagOnScreen({ navigation }) {
 
       <View style={styles.GIF}>
         <Image
-          source={{
-            width: 200,
-            height: 200,
-            uri: "https://media.giphy.com/media/DtfgzTxPw7pPq/giphy.gif",
-          }}
+          style={{ width: 180, height: 160, top: "18%", left: "6%" }}
+          source={require("../assets/at-tag-on-button.gif")}
         />
+        <Text style={styles.tapText}>TAP AND HOLD</Text>
+        <Text style={styles.tapText}>HERE TO TAG ON</Text>
       </View>
     </ImageBackground>
   );
@@ -69,8 +68,18 @@ const styles = StyleSheet.create({
     right: "5%",
   },
   GIF: {
-    top: "46%",
+    left: "27%",
+    top: "48%",
     position: "absolute",
+  },
+  tapText: {
+    bottom: "84%",
+    left: "5%",
+    color: "darkgrey",
+    fontSize: 16,
+    fontWeight: "bold",
+    alignSelf: "center",
+    opacity: 0.5,
   },
   text: {
     top: -60,
