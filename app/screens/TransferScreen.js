@@ -14,12 +14,11 @@ import { Icon } from "react-native-elements";
 export default class TransferScreen extends Component {
   constructor(props) {
     super(props);
-    const amountValue = 60;
-    const balanceValue = 50;
-    //this.amount = amountValue.toFixed(2);
-    //this.balance = balanceValue.toFixed(2);
+    const accountBalance = require("../../card-balance.json");
+    const defaultAmount = 60;
+    const balanceValue = accountBalance.cardBalance;
     this.state = {
-      amount: amountValue.toFixed(2),
+      amount: defaultAmount.toFixed(2),
       balance: balanceValue.toFixed(2),
     };
   }
@@ -83,7 +82,7 @@ export default class TransferScreen extends Component {
         <View style={styles.bottomSection}>
           <Image
             style={styles.GIF}
-            source={require("../assets/at-transfer-button2.gif")}
+            source={require("../assets/at-transfer-button-8s.gif")}
           />
           <Text style={styles.transferText} onPress={this.handlePressTransfer}>
             TRANSFER

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import {
   Button,
   ImageBackground,
@@ -9,42 +9,55 @@ import {
   Text,
 } from "react-native";
 
-function TagOnScreen({ navigation }) {
-  const handleTopUpPress = () => console.log("Register Pressed");
+export default class TransferScreen extends Component {
+  constructor(props) {
+    super(props);
+    const accountBalance = require("../../card-balance.json");
+    this.state = {
+      balance: accountBalance.cardBalance.toFixed(2),
+    };
+  }
+  handleTopUpPress = () => console.log("Register Pressed");
 
-  return (
-    <ImageBackground
-      style={styles.Background}
-      source={require("../assets/at-tag-on.png")}
-    >
-      <View style={styles.content}>
-        <Text style={styles.text}>
-          BALANCE: <Text style={styles.TopUpText}>$50.00</Text>
-        </Text>
+  render() {
+    return (
+      <ImageBackground
+        style={styles.Background}
+        source={require("../assets/at-tag-on.png")}
+      >
+        <View style={styles.content}>
+          <Text style={styles.text}>
+            BALANCE: <Text style={styles.TopUpText}>${this.state.balance}</Text>
+          </Text>
 
-        <View style={styles.ToUpButton}>
+          <View style={styles.ToUpButton}>
+            <Button
+              color="white"
+              title="TOP UP"
+              onPress={() => this.props.navigation.navigate("Transfer")}
+            />
+          </View>
+        </View>
+
+        <View style={styles.bottomButton}>
           <Button
             color="white"
-            title="TOP UP"
-            onPress={() => navigation.navigate("Transfer")}
+            title="Change Cards"
+            onPress={this.handleTopUpPress}
           />
         </View>
-      </View>
 
-      <View style={styles.bottomButton}>
-        <Button color="white" title="Change Cards" onPress={handleTopUpPress} />
-      </View>
-
-      <View style={styles.GIF}>
-        <Image
-          style={{ width: 180, height: 160, top: "18%", left: "6%" }}
-          source={require("../assets/at-tag-on-button.gif")}
-        />
-        <Text style={styles.tapText}>TAP AND HOLD</Text>
-        <Text style={styles.tapText}>HERE TO TAG ON</Text>
-      </View>
-    </ImageBackground>
-  );
+        <View style={styles.GIF}>
+          <Image
+            style={{ width: 180, height: 160, top: "18%", left: "6%" }}
+            source={require("../assets/at-tag-on-button.gif")}
+          />
+          <Text style={styles.tapText}>TAP AND HOLD</Text>
+          <Text style={styles.tapText}>HERE TO TAG ON</Text>
+        </View>
+      </ImageBackground>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -103,5 +116,3 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
 });
-
-export default TagOnScreen;
