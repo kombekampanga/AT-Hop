@@ -1,3 +1,8 @@
+/*
+TO DO
+- Fix pop up window so the edges are rounded
+- Save the account balance so it is the same on all screens
+*/
 import React, { Component } from "react";
 import {
   Button,
@@ -5,7 +10,6 @@ import {
   StyleSheet,
   View,
   TouchableWithoutFeedback,
-  Image,
   Text,
   Modal,
 } from "react-native";
@@ -196,7 +200,7 @@ const styles = StyleSheet.create({
   modalContent: {
     height: "45%",
     width: "100%",
-    borderRadius: 5,
+    borderRadius: 15,
     marginTop: "auto",
     alignSelf: "center",
     alignItems: "center",
