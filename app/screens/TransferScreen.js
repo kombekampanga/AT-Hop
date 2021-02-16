@@ -9,17 +9,23 @@ import {
   Alert,
 } from "react-native";
 
+import { Video } from "expo-av";
+
+import * as FileSystem from "expo-file-system";
+
 import { Icon } from "react-native-elements";
 
 export default class TransferScreen extends Component {
   constructor(props) {
     super(props);
-    const accountBalance = require("../../card-balance.json");
+    let accountBalance = require("../../card-balance.json");
+    this.shouldPlayState = false;
     const defaultAmount = 60;
     const balanceValue = accountBalance.cardBalance;
     this.state = {
       amount: defaultAmount.toFixed(2),
       balance: balanceValue.toFixed(2),
+      shouldPlay: false,
     };
   }
 
@@ -50,8 +56,10 @@ export default class TransferScreen extends Component {
   handlePressTransfer = () => {
     let value = parseFloat(this.state.balance) + parseFloat(this.state.amount);
     this.setState({
+      shouldPlay: !this.shouldPlayState,
       balance: parseFloat(value).toFixed(2),
     });
+    this.shouldPlayState = !this.shouldPlayState;
   };
 
   render() {
@@ -66,7 +74,12 @@ export default class TransferScreen extends Component {
           />
         </View>
         <View style={styles.topSection}>
-          <View style={styles.topLeftBox}></View>
+          <View style={styles.topLeftBox}>
+            <Image
+              style={styles.visa}
+              source={require("../assets/visa.png")}
+            ></Image>
+          </View>
           <View style={styles.topRightBox}>
             <Text style={styles.tableText} onPress={this.handlePressAmount}>
               ${this.state.amount}
@@ -77,12 +90,18 @@ export default class TransferScreen extends Component {
             <Text style={styles.tableText}>${this.state.balance}</Text>
             <Text style={styles.tableText2}>Current Balance</Text>
           </View>
-          <View style={styles.bottomLeftBox}></View>
+          <View style={styles.bottomLeftBox}>
+            <Image
+              style={styles.hopCard}
+              source={require("../assets/real-hop-card.png")}
+            ></Image>
+          </View>
         </View>
         <View style={styles.bottomSection}>
-          <Image
+          <Video
             style={styles.GIF}
-            source={require("../assets/at-transfer-button-8s.gif")}
+            source={require("../assets/loaded-video-3.mp4")}
+            shouldPlay={this.state.shouldPlay}
           />
           <Text style={styles.transferText} onPress={this.handlePressTransfer}>
             TRANSFER
@@ -191,14 +210,23 @@ const styles = StyleSheet.create({
   transferText: {
     bottom: "7%",
     color: "#84AB3C",
-    fontSize: 28,
+    fontSize: 20,
     fontWeight: "bold",
-    opacity: 0.7,
   },
   GIF: {
     bottom: "18%",
     width: 350,
     height: 350,
+    position: "absolute",
+  },
+  visa: {
+    width: 130,
+    height: 84.5,
+    position: "absolute",
+  },
+  hopCard: {
+    width: 130,
+    height: 78,
     position: "absolute",
   },
 });

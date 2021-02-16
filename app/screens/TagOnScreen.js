@@ -6,6 +6,7 @@ import {
   View,
   SafeAreaView,
   Image,
+  Video,
   Text,
 } from "react-native";
 
@@ -34,6 +35,7 @@ export default class TransferScreen extends Component {
             <Button
               color="white"
               title="TOP UP"
+              raised
               onPress={() => this.props.navigation.navigate("Transfer")}
             />
           </View>
@@ -43,6 +45,7 @@ export default class TransferScreen extends Component {
           <Button
             color="white"
             title="Change Cards"
+            raised
             onPress={this.handleTopUpPress}
           />
         </View>
