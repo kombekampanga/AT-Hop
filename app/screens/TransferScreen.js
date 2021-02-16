@@ -19,15 +19,19 @@ import { Icon } from "react-native-elements";
 export default class TransferScreen extends Component {
   constructor(props) {
     super(props);
-    let accountBalance = require("../../card-balance.json");
+    const accountBalance = this.props.route.params.myBalance;
     this.shouldPlayState = false;
-    const defaultAmount = 20;
-    const balanceValue = accountBalance.cardBalance;
+    const defaultAmount = 5;
     this.state = {
       amount: defaultAmount.toFixed(2),
-      balance: balanceValue.toFixed(2),
+      balance: accountBalance,
       shouldPlay: false,
     };
+  }
+
+  //return the updated balance to the main tag on screen
+  componentWillUnmount() {
+    this.props.route.params.updateBalance(this.state.balance);
   }
 
   handleAmount = (text) => {

@@ -19,14 +19,25 @@ import { Icon } from "react-native-elements";
 export default class TransferScreen extends Component {
   constructor(props) {
     super(props);
-    const accountBalance = require("../../card-balance.json");
+    const accountBalance = this.props.route.params.myBalance;
     this.state = {
-      balance: accountBalance.cardBalance.toFixed(2),
+      balance: accountBalance,
       shouldPlay: false,
       isLooping: false,
       modalOpen: false,
     };
   }
+
+  componentWillUnmount() {
+    this.props.route.params.updateBalance(this.state.balance);
+  }
+
+  updateBalance(value) {
+    this.setState({
+      balance: value,
+    });
+  }
+
   handleTagOnOffPress = () => {
     this.setState({
       shouldPlay: true,
@@ -107,7 +118,12 @@ export default class TransferScreen extends Component {
               color="white"
               title="TOP UP"
               raised
-              onPress={() => this.props.navigation.navigate("Transfer")}
+              onPress={() =>
+                this.props.navigation.navigate("Transfer", {
+                  myBalance: this.state.balance,
+                  updateBalance: this.updateBalance.bind(this),
+                })
+              }
             />
           </View>
         </View>

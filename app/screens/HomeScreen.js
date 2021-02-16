@@ -1,16 +1,22 @@
-import React from "react";
+import React, { Component } from "react";
 import { Button, ImageBackground, StyleSheet, View } from "react-native";
-import {
-  useDimensions,
-  useDeviceOrientation,
-} from "@react-native-community/hooks";
-import TagOnScreen from "./TagOnScreen";
 
-function HomeScreen({ navigation }) {
-  const { portrait } = useDeviceOrientation();
-  const handleLoginPress = () => console.log("Login Pressed");
+export default class Home extends Component {
+  constructor(props) {
+    super(props);
+    const accountBalance = require("../../card-balance.json").cardBalance;
+    this.state = {
+      balance: accountBalance.toFixed(2),
+    };
+  }
 
-  if (portrait) {
+  updateBalance(value) {
+    this.setState({
+      balance: value,
+    });
+  }
+
+  render() {
     return (
       <ImageBackground
         style={styles.Background}
@@ -20,24 +26,27 @@ function HomeScreen({ navigation }) {
           <Button
             color="white"
             title="Login"
-            onPress={() => navigation.navigate("TagOn")}
+            onPress={() =>
+              this.props.navigation.navigate("TagOn", {
+                myBalance: this.state.balance,
+                updateBalance: this.updateBalance.bind(this),
+              })
+            }
           />
         </View>
         <View style={styles.registerButton}>
           <Button
             color="white"
             title="Register"
-            onPress={() => navigation.navigate("TagOn")}
+            onPress={() =>
+              this.props.navigation.navigate("TagOn", {
+                myBalance: this.state.balance,
+                updateBalance: this.updateBalance.bind(this),
+              })
+            }
           />
         </View>
       </ImageBackground>
-    );
-  } else {
-    return (
-      <ImageBackground
-        style={styles.Background}
-        source={require("../assets/at-landscape.png")}
-      ></ImageBackground>
     );
   }
 }
@@ -60,5 +69,3 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
-
-export default HomeScreen;
