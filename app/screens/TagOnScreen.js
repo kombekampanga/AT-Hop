@@ -7,8 +7,10 @@ import {
   TouchableWithoutFeedback,
   Image,
   Text,
+  Modal,
 } from "react-native";
 import { Video } from "expo-av";
+import { Icon } from "react-native-elements";
 
 export default class TransferScreen extends Component {
   constructor(props) {
@@ -18,6 +20,7 @@ export default class TransferScreen extends Component {
       balance: accountBalance.cardBalance.toFixed(2),
       shouldPlay: false,
       isLooping: false,
+      modalOpen: false,
     };
   }
   handleTagOnOffPress = () => {
@@ -34,7 +37,16 @@ export default class TransferScreen extends Component {
     });
   };
 
-  handleTopUpPress = () => console.log("Register Pressed");
+  exitModal = () => {
+    this.setState({
+      modalOpen: false,
+    });
+  };
+  openModal = () => {
+    this.setState({
+      modalOpen: true,
+    });
+  };
 
   render() {
     return (
@@ -42,6 +54,36 @@ export default class TransferScreen extends Component {
         style={styles.Background}
         source={require("../assets/tag-on-screen.png")}
       >
+        <Modal
+          visible={this.state.modalOpen}
+          animationType="slide"
+          transparent={true}
+        >
+          <View style={styles.modalContent}>
+            <ImageBackground
+              style={{ width: "100%", height: "100%" }}
+              source={require("../assets/popUp.png")}
+            >
+              <View style={{ left: "45%", top: 5 }}>
+                <Icon
+                  name="times"
+                  type="font-awesome-5"
+                  color="white"
+                  onPress={this.exitModal}
+                />
+              </View>
+              <View style={styles.cardDetailsButton}>
+                <Button color="white" title="Card Details" raised />
+              </View>
+              <View style={styles.activateCardButton}>
+                <Button color="white" title="Activate Card" raised />
+              </View>
+              <View style={styles.languageButton}>
+                <Button color="white" title="Language" raised />
+              </View>
+            </ImageBackground>
+          </View>
+        </Modal>
         <View style={styles.content}>
           <Text style={styles.text}>
             BALANCE: <Text style={styles.TopUpText}>${this.state.balance}</Text>
@@ -62,7 +104,7 @@ export default class TransferScreen extends Component {
             color="white"
             title="Settings"
             raised
-            onPress={this.handleTopUpPress}
+            onPress={this.openModal}
           />
         </View>
         <TouchableWithoutFeedback
@@ -86,6 +128,17 @@ export default class TransferScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+  activateCardButton: {
+    left: "5%",
+    top: "35%",
+    width: 170,
+    height: 40,
+    backgroundColor: "#84AB3C",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 50,
+    position: "relative",
+  },
   Background: {
     flex: 1,
     justifyContent: "center",
@@ -100,6 +153,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 50,
   },
+  cardDetailsButton: {
+    left: "5%",
+    top: "20%",
+    width: 200,
+    height: 40,
+    backgroundColor: "#84AB3C",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 50,
+    position: "absolute",
+  },
   content: {
     flex: 0.4,
     right: "5%",
@@ -108,6 +172,25 @@ const styles = StyleSheet.create({
     left: "27%",
     top: "48%",
     position: "absolute",
+  },
+  languageButton: {
+    left: "5%",
+    top: "45%",
+    width: 140,
+    height: 40,
+    backgroundColor: "#84AB3C",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 50,
+    position: "relative",
+  },
+  modalContent: {
+    height: "45%",
+    width: "100%",
+    borderRadius: 5,
+    marginTop: "auto",
+    alignSelf: "center",
+    alignItems: "center",
   },
   tapText: {
     bottom: "84%",
