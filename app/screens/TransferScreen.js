@@ -7,6 +7,7 @@ import {
   Image,
   Text,
   Alert,
+  TouchableWithoutFeedback,
 } from "react-native";
 
 import { Video } from "expo-av";
@@ -20,7 +21,7 @@ export default class TransferScreen extends Component {
     super(props);
     let accountBalance = require("../../card-balance.json");
     this.shouldPlayState = false;
-    const defaultAmount = 60;
+    const defaultAmount = 20;
     const balanceValue = accountBalance.cardBalance;
     this.state = {
       amount: defaultAmount.toFixed(2),
@@ -53,13 +54,14 @@ export default class TransferScreen extends Component {
     });
   };
 
-  handlePressTransfer = () => {
+  handleTransferPress = () => {
     let value = parseFloat(this.state.balance) + parseFloat(this.state.amount);
+    const amount = 0;
     this.setState({
-      shouldPlay: !this.shouldPlayState,
+      shouldPlay: true,
       balance: parseFloat(value).toFixed(2),
+      amount: amount.toFixed(2),
     });
-    this.shouldPlayState = !this.shouldPlayState;
   };
 
   render() {
@@ -97,16 +99,16 @@ export default class TransferScreen extends Component {
             ></Image>
           </View>
         </View>
-        <View style={styles.bottomSection}>
-          <Video
-            style={styles.GIF}
-            source={require("../assets/loaded-video-3.mp4")}
-            shouldPlay={this.state.shouldPlay}
-          />
-          <Text style={styles.transferText} onPress={this.handlePressTransfer}>
-            TRANSFER
-          </Text>
-        </View>
+        <TouchableWithoutFeedback onPress={this.handleTransferPress}>
+          <View style={styles.bottomSection}>
+            <Video
+              style={styles.GIF}
+              source={require("../assets/loaded-video-3.mp4")}
+              shouldPlay={this.state.shouldPlay}
+            />
+            <Text style={styles.transferText}>TRANSFER</Text>
+          </View>
+        </TouchableWithoutFeedback>
       </View>
     );
   }
