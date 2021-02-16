@@ -54,6 +54,15 @@ export default class TransferScreen extends Component {
         style={styles.Background}
         source={require("../assets/tag-on-screen.png")}
       >
+        <View style={{ right: "42%", bottom: "20%", opacity: 0.7 }}>
+          <Icon
+            name="reply"
+            type="font-awesome-5"
+            color="white"
+            onPress={() => this.props.navigation.navigate("Home")}
+          />
+        </View>
+
         <Modal
           visible={this.state.modalOpen}
           animationType="slide"
