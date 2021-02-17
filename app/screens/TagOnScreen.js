@@ -244,7 +244,7 @@ const styles = StyleSheet.create({
   },
   TopUpText: {
     color: "white",
-    fontSize: 40,
+    fontSize: Dimensions.get("window").width / 11,
     fontWeight: "bold",
   },
   ToUpButton: {
