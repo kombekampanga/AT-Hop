@@ -152,7 +152,7 @@ export default class TransferScreen extends Component {
                 bottom: "15%",
                 right: "17%",
               }}
-              source={require("../assets/loaded-video-3.mp4")}
+              source={require("../assets/loaded-video-2s.mp4")}
               shouldPlay={this.state.shouldPlay}
               isLooping={this.state.isLooping}
             />
