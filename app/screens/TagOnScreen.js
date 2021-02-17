@@ -1,7 +1,6 @@
 /*
 TO DO
 - Fix pop up window so the edges are rounded
-- Save the account balance so it is the same on all screens
 */
 import React, { Component } from "react";
 import {
@@ -157,8 +156,6 @@ export default class TransferScreen extends Component {
             />
           </View>
         </TouchableWithoutFeedback>
-        {/* <Text style={styles.tapText}>TAP AND HOLD</Text>
-          <Text style={styles.tapText}>HERE TO TAG ON</Text> */}
       </ImageBackground>
     );
   }
