@@ -107,7 +107,7 @@ export default class TransferScreen extends Component {
           <View style={styles.bottomSection}>
             <Video
               style={styles.GIF}
-              source={require("../assets/loaded-video-3.mp4")}
+              source={require("../assets/loading-video-1s.mp4")}
               shouldPlay={this.state.shouldPlay}
             />
             <Text style={styles.transferText}>TRANSFER</Text>
