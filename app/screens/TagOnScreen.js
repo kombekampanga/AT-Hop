@@ -12,6 +12,7 @@ import {
   TouchableWithoutFeedback,
   Text,
   Modal,
+  Dimensions,
 } from "react-native";
 import { Video } from "expo-av";
 import { Icon } from "react-native-elements";
@@ -142,7 +143,14 @@ export default class TransferScreen extends Component {
         >
           <View style={styles.GIF}>
             <Video
-              style={{ width: 280, height: 210, bottom: "15%", right: "20%" }}
+              style={{
+                width: (2 * Dimensions.get("window").width) / 3,
+                height:
+                  (2 * Dimensions.get("window").width) / 3 -
+                  Dimensions.get("window").width / 5,
+                bottom: "15%",
+                right: "17%",
+              }}
               source={require("../assets/loaded-video-3.mp4")}
               shouldPlay={this.state.shouldPlay}
               isLooping={this.state.isLooping}
@@ -160,7 +168,7 @@ const styles = StyleSheet.create({
   activateCardButton: {
     left: "5%",
     top: "35%",
-    width: 170,
+    width: Dimensions.get("window").width / 2 - 30,
     height: 40,
     backgroundColor: "#84AB3C",
     justifyContent: "center",
@@ -169,13 +177,14 @@ const styles = StyleSheet.create({
     position: "relative",
   },
   Background: {
-    flex: 1,
+    width: "100%",
+    height: "100%",
     justifyContent: "center",
     alignItems: "center",
   },
   bottomButton: {
-    top: "23%",
-    width: 210,
+    top: Dimensions.get("window").height / 2.5,
+    width: Dimensions.get("window").width / 2,
     height: 50,
     backgroundColor: "#84AB3C",
     justifyContent: "center",
@@ -185,7 +194,7 @@ const styles = StyleSheet.create({
   cardDetailsButton: {
     left: "5%",
     top: "20%",
-    width: 200,
+    width: Dimensions.get("window").width / 2,
     height: 40,
     backgroundColor: "#84AB3C",
     justifyContent: "center",
@@ -194,7 +203,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   content: {
-    flex: 0.4,
+    bottom: "20%",
     right: "5%",
   },
   GIF: {
@@ -205,7 +214,7 @@ const styles = StyleSheet.create({
   languageButton: {
     left: "5%",
     top: "45%",
-    width: 140,
+    width: Dimensions.get("window").width / 2 - 60,
     height: 40,
     backgroundColor: "#84AB3C",
     justifyContent: "center",
@@ -231,7 +240,7 @@ const styles = StyleSheet.create({
     opacity: 0.5,
   },
   text: {
-    top: -60,
+    top: -1 * (Dimensions.get("window").width / 6.9),
     position: "absolute",
     color: "white",
     fontWeight: "500",
@@ -243,7 +252,7 @@ const styles = StyleSheet.create({
   },
   ToUpButton: {
     left: "15%",
-    width: 150,
+    width: Dimensions.get("window").width / 3,
     height: 50,
     backgroundColor: "#84AB3C",
     color: "white",

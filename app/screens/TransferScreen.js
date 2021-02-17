@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {
-  Button,
-  ImageBackground,
+  Dimensions,
   StyleSheet,
   View,
   Image,
@@ -12,8 +11,6 @@ import {
 
 import { Video } from "expo-av";
 
-import * as FileSystem from "expo-file-system";
-
 import { Icon } from "react-native-elements";
 
 export default class TransferScreen extends Component {
@@ -21,7 +18,7 @@ export default class TransferScreen extends Component {
     super(props);
     const accountBalance = this.props.route.params.myBalance;
     this.shouldPlayState = false;
-    const defaultAmount = 5;
+    const defaultAmount = 0;
     this.state = {
       amount: defaultAmount.toFixed(2),
       balance: accountBalance,
@@ -126,8 +123,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#1C3C54",
   },
   backButton: {
-    width: 100,
-    height: 55,
+    width: Dimensions.get("window").width / 4.2,
+    height: Dimensions.get("window").width / 8.4,
     bottom: "88%",
     right: "72%",
     flexDirection: "column",
@@ -221,18 +218,18 @@ const styles = StyleSheet.create({
   },
   GIF: {
     bottom: "18%",
-    width: 350,
-    height: 350,
+    width: Dimensions.get("window").width / 1.2,
+    height: Dimensions.get("window").width / 1.2,
     position: "absolute",
   },
   visa: {
-    width: 130,
-    height: 84.5,
+    width: Dimensions.get("window").width / 3.1,
+    height: Dimensions.get("window").width / 5,
     position: "absolute",
   },
   hopCard: {
-    width: 130,
-    height: 78,
+    width: Dimensions.get("window").width / 3.1,
+    height: Dimensions.get("window").width / 5 - 5,
     position: "absolute",
   },
 });
