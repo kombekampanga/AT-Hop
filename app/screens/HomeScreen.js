@@ -1,3 +1,7 @@
+/*
+TO DO
+- Fix video that plays when transfer is made
+*/
 import React, { Component } from "react";
 import { Button, ImageBackground, StyleSheet, View } from "react-native";
 

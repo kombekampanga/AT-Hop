@@ -1,7 +1,8 @@
 /*
 TO DO
 - Fix pop up window so the edges are rounded
-- Save the account balance so it is the same on all screens
+- Find out how to dynamically change the font size to fit the screen
+(maybe word length should be less than 40, if its more then reduce font size)
 */
 import React, { Component } from "react";
 import {
@@ -70,7 +71,7 @@ export default class TransferScreen extends Component {
         style={styles.Background}
         source={require("../assets/tag-on-screen.png")}
       >
-        <View style={{ right: "42%", bottom: "20%", opacity: 0.7 }}>
+        <View style={{ right: "42%", bottom: "38%", opacity: 0.7 }}>
           <Icon
             name="reply"
             type="font-awesome-5"
@@ -151,14 +152,12 @@ export default class TransferScreen extends Component {
                 bottom: "15%",
                 right: "17%",
               }}
-              source={require("../assets/loaded-video-3.mp4")}
+              source={require("../assets/loaded-video-2s.mp4")}
               shouldPlay={this.state.shouldPlay}
               isLooping={this.state.isLooping}
             />
           </View>
         </TouchableWithoutFeedback>
-        {/* <Text style={styles.tapText}>TAP AND HOLD</Text>
-          <Text style={styles.tapText}>HERE TO TAG ON</Text> */}
       </ImageBackground>
     );
   }
@@ -203,7 +202,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   content: {
-    bottom: "20%",
+    bottom: "21%",
     right: "5%",
   },
   GIF: {
@@ -247,13 +246,13 @@ const styles = StyleSheet.create({
   },
   TopUpText: {
     color: "white",
-    fontSize: 40,
+    fontSize: Dimensions.get("window").width / 11,
     fontWeight: "bold",
   },
   ToUpButton: {
-    left: "15%",
+    left: "18%",
     width: Dimensions.get("window").width / 3,
-    height: 50,
+    height: Dimensions.get("window").width / 8.3,
     backgroundColor: "#84AB3C",
     color: "white",
     justifyContent: "center",
