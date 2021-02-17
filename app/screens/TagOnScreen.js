@@ -69,7 +69,7 @@ export default class TransferScreen extends Component {
         style={styles.Background}
         source={require("../assets/tag-on-screen.png")}
       >
-        <View style={{ right: "42%", bottom: "20%", opacity: 0.7 }}>
+        <View style={{ right: "42%", bottom: "38%", opacity: 0.7 }}>
           <Icon
             name="reply"
             type="font-awesome-5"
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   content: {
-    bottom: "20%",
+    bottom: "21%",
     right: "5%",
   },
   GIF: {
@@ -248,9 +248,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   ToUpButton: {
-    left: "15%",
+    left: "18%",
     width: Dimensions.get("window").width / 3,
-    height: 50,
+    height: Dimensions.get("window").width / 8.3,
     backgroundColor: "#84AB3C",
     color: "white",
     justifyContent: "center",

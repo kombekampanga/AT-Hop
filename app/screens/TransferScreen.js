@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   tableText2: {
-    right: "-15%",
+    right: "-10%",
     bottom: "55%",
     color: "darkgrey",
     fontSize: 12,
@@ -218,8 +218,8 @@ const styles = StyleSheet.create({
   },
   GIF: {
     bottom: "18%",
-    width: Dimensions.get("window").width / 1.2,
-    height: Dimensions.get("window").width / 1.2,
+    width: Dimensions.get("window").height / 2.6,
+    height: Dimensions.get("window").height / 2.6,
     position: "absolute",
   },
   visa: {
