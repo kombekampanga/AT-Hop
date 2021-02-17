@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {
-  Button,
-  ImageBackground,
+  Dimensions,
   StyleSheet,
   View,
   Image,
@@ -12,22 +11,24 @@ import {
 
 import { Video } from "expo-av";
 
-import * as FileSystem from "expo-file-system";
-
 import { Icon } from "react-native-elements";
 
 export default class TransferScreen extends Component {
   constructor(props) {
     super(props);
-    let accountBalance = require("../../card-balance.json");
+    const accountBalance = this.props.route.params.myBalance;
     this.shouldPlayState = false;
-    const defaultAmount = 20;
-    const balanceValue = accountBalance.cardBalance;
+    const defaultAmount = 0;
     this.state = {
       amount: defaultAmount.toFixed(2),
-      balance: balanceValue.toFixed(2),
+      balance: accountBalance,
       shouldPlay: false,
     };
+  }
+
+  //return the updated balance to the main tag on screen
+  componentWillUnmount() {
+    this.props.route.params.updateBalance(this.state.balance);
   }
 
   handleAmount = (text) => {
@@ -103,7 +104,7 @@ export default class TransferScreen extends Component {
           <View style={styles.bottomSection}>
             <Video
               style={styles.GIF}
-              source={require("../assets/loaded-video-3.mp4")}
+              source={require("../assets/loading-video-1s.mp4")}
               shouldPlay={this.state.shouldPlay}
             />
             <Text style={styles.transferText}>TRANSFER</Text>
@@ -122,8 +123,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#1C3C54",
   },
   backButton: {
-    width: 100,
-    height: 55,
+    width: Dimensions.get("window").width / 4.2,
+    height: Dimensions.get("window").width / 8.4,
     bottom: "88%",
     right: "72%",
     flexDirection: "column",
@@ -217,18 +218,18 @@ const styles = StyleSheet.create({
   },
   GIF: {
     bottom: "18%",
-    width: 350,
-    height: 350,
+    width: Dimensions.get("window").width / 1.2,
+    height: Dimensions.get("window").width / 1.2,
     position: "absolute",
   },
   visa: {
-    width: 130,
-    height: 84.5,
+    width: Dimensions.get("window").width / 3.1,
+    height: Dimensions.get("window").width / 5,
     position: "absolute",
   },
   hopCard: {
-    width: 130,
-    height: 78,
+    width: Dimensions.get("window").width / 3.1,
+    height: Dimensions.get("window").width / 5 - 5,
     position: "absolute",
   },
 });

@@ -3,7 +3,7 @@
     "name": "AT-HOP",
     "slug": "AT-HOP",
     "version": "1.0.0",
-    "orientation": "default",
+    "orientation": "portrait",
     "icon": "./app/assets/at-logo.png",
     "splash": {
       "image": "./app/assets/at-home.png",
@@ -17,7 +17,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.kombizzle.AT-HOP"
     },
     "android": {
       "adaptiveIcon": {
