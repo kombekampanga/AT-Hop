@@ -3,7 +3,7 @@
     "name": "AT-HOP",
     "slug": "AT-HOP",
     "version": "1.0.0",
-    "orientation": "landscape",
+    "orientation": "portrait",
     "icon": "./app/assets/at-logo.png",
     "splash": {
       "image": "./app/assets/at-home.png",
