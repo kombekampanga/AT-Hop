@@ -1,6 +1,8 @@
 /*
 TO DO
 - Fix pop up window so the edges are rounded
+- Find out how to dynamically change the font size to fit the screen
+(maybe word length should be less than 40, if its more then reduce font size)
 */
 import React, { Component } from "react";
 import {
